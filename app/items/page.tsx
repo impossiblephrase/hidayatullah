@@ -1,20 +1,13 @@
 // app/items/page.tsx
-import { GetStaticProps } from 'next';
-import ItemsCard from '@/components/ItemsCard';
 import { fetchMarketplaceItems } from '@/lib/fetchItems';
-import Hero from '@/components/Hero';
+import { fetchCategories } from '@/lib/fetchCategories';
+import ClientItemsPage from './ClientItemsPage';
 
 
 
-
-export default async function ItemsPage() {
+export default async function Page() {
   const items = await fetchMarketplaceItems(); // ✅ fetch inside the component
+  const categories = await fetchCategories();
 
-  return (
-
-    <div className="min-h-screen mt-10 bg-[#030014]">
-    <ItemsCard heading="Koperasi Masjid Hidayatullah" items={items} />
-    </div>
-  );
-};
-
+    return <ClientItemsPage items={items} categories={categories} />;
+}
