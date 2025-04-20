@@ -1,7 +1,6 @@
-// app/items/ClientItemsPage.tsx
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MarketplaceItem } from '@/components/ItemsCard';
 import ItemsCard from '@/components/ItemsCard';
 
@@ -14,28 +13,32 @@ export default function ClientItemsPage({
 }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Semua');
+  const [filteredItems, setFilteredItems] = useState<MarketplaceItem[]>([]);
 
-  const filteredItems = items.filter((item) => {
-    console.log('selected:', selectedCategory, 'item:', item.category);
-    console.log(items.map((item) => ({
-      title: item.title,
-      category: item.category,
-    })));
-    
-
-    const matchCategory =
-    selectedCategory === 'Semua' ||
-    item.category.trim().toLowerCase() === selectedCategory.trim().toLowerCase();
-    console.log('selectedCategory:', selectedCategory);
-    console.log('item categories:', items.map(i => i.category));    
-
-  
-    const matchSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase());
-
-    return matchCategory && matchSearch;
-  });
+  const itemsRef = useRef<HTMLDivElement>(null);
 
   const uniqueCategories = ['Semua', ...categories];
+
+  useEffect(() => {
+    const filtered = items.filter((item) => {
+      const matchCategory =
+        selectedCategory === 'Semua' ||
+        item.category.trim().toLowerCase() === selectedCategory.trim().toLowerCase();
+
+      const matchSearch = item.title
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
+      return matchCategory && matchSearch;
+    });
+
+    setFilteredItems(filtered);
+
+    // Scroll into view after filtering
+    if (itemsRef.current) {
+      itemsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [items, searchTerm, selectedCategory]);
 
   return (
     <div className="min-h-screen mt-20 bg-[#030014] px-1">
@@ -54,14 +57,17 @@ export default function ClientItemsPage({
           className="w-full p-1 rounded bg-gray-800 text-white"
         >
           {uniqueCategories.map((cat) => (
-          <option key={cat} value={cat.trim()}>
-            {cat}
-          </option>
+            <option key={cat} value={cat.trim()}>
+              {cat}
+            </option>
           ))}
         </select>
       </section>
 
-      <ItemsCard heading="Koperasi Masjid Hidayatullah" items={filteredItems} />
+      <div ref={itemsRef} className="scroll-mt-32">
+        <ItemsCard heading="Koperasi Masjid Hidayatullah" items={filteredItems} />
+      </div>
+
     </div>
   );
 }
