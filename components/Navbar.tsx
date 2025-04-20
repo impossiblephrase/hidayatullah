@@ -28,7 +28,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 p-4 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#030014] shadow-lg' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 p-2 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#030014] shadow-lg' : 'bg-transparent'}`}>
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo and text beside each other */}
         <div className="flex items-center space-x-2 text-white text-xl font-bold">

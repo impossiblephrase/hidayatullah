@@ -38,12 +38,12 @@ export default function ClientItemsPage({
   const uniqueCategories = ['Semua', ...categories];
 
   return (
-    <div className="min-h-screen mt-20 bg-[#030014] px-4">
-      <section className="sticky top-16 md:top-16 z-50 w-full px-10 flex flex-col items-center bg-[#030014]">
+    <div className="min-h-screen mt-20 bg-[#030014] px-1">
+      <section className="sticky top-14 md:top-14 z-40 w-full py-3 px-10 flex flex-col items-center bg-[#030014]">
         <input
           type="text"
           placeholder="nyari apa? . . ."
-          className="w-full p-1 mb-4 rounded bg-white text-black"
+          className="w-full p-1 mb-3 rounded bg-white text-black"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -51,7 +51,7 @@ export default function ClientItemsPage({
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full p-1 mb-4 rounded bg-gray-800 text-white"
+          className="w-full p-1 rounded bg-gray-800 text-white"
         >
           {uniqueCategories.map((cat) => (
           <option key={cat} value={cat.trim()}>

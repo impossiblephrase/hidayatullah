@@ -21,15 +21,15 @@ interface ItemsCardProps {
 
 const ItemsCard: React.FC<ItemsCardProps> = ({ items, heading, highlighted = false }) => {
   return (
-    <section className={`py-8 md:py-8 container mx-auto px-4 sm:px-6 ${highlighted ? 'bg-yellow-50' : ''}`}>
+    <section className={`py-8 md:py-8 container mx-auto px-1 sm:px-1 ${highlighted ? 'bg-yellow-50' : ''}`}>
       <h2 className={`text-2xl md:text-4xl font-bold text-center mb-6 md:mb-12 ${highlighted ? 'text-yellow-700' : 'text-white'}`}>
         {heading}
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1 md:gap-2">
         {items.map((item, index) => (
           <div
             key={index}
-            className={`relative flex flex-col p-3 shadow-xl rounded-lg hover:shadow-2xl transition duration-500 ${highlighted ? 'bg-gray-300 border-black' : 'bg-gray-300'}`}
+            className={`relative flex flex-col p-2 shadow-xl rounded-lg hover:shadow-2xl transition duration-500 ${highlighted ? 'bg-gray-300 border-black' : 'bg-gray-300'}`}
             >
               <div className="relative p-1 h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden rounded-xl bg-clip-border">
                   <Image
@@ -51,8 +51,8 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ items, heading, highlighted = fal
                 </h2>
               {item.link && (
                 <Link 
-                href={item.link} className="mt-2 sm:mt-3 md:mt-4 inline-block text-white bg-blue-600 hover:bg-blue-700 transition px-3 py-1 sm:px-4 sm:py-2 rounded-lg text-sm sm:text-base">                  
-                View
+                href={item.link} className="mt-3 sm:mt-3 md:mt-3 inline-block text-white bg-blue-600 hover:bg-blue-700 transition px-3 py-1 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm">                  
+                link terkait
                 </Link>
               )}
               </div>
