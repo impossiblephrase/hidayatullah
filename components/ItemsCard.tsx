@@ -29,29 +29,29 @@ const ItemsCard: React.FC<ItemsCardProps> = ({ items, heading, highlighted = fal
         {items.map((item, index) => (
           <div
             key={index}
-            className={`relative flex flex-col p-2 shadow-xl rounded-lg hover:shadow-2xl transition duration-500 ${highlighted ? 'bg-gray-300 border-black' : 'bg-gray-300'}`}
+            className={`relative flex flex-col p-0 shadow-xl rounded-lg hover:shadow-2xl transition duration-500 ${highlighted ? 'bg-gray-300 border-black' : 'bg-gray-300'}`}
             >
-              <div className="relative p-1 h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden rounded-xl bg-clip-border">
+              <div className="relative p-0 h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden rounded-lg bg-clip-border">
                   <Image
                   src={item.imageSrc}
                   alt={item.title}
                   fill
-                  className="rounded-lg object-cover mb-4 shadow-md"
+                  className="object-cover mb-4 shadow-md"
                 />
-              </div>
-              <div>
-                <h1 className="text-sm sm:text-base md:text-xl font-bold text-gray-800">
+              </div >
+              <div className='p-1'>
+                <h1 className="mt-1 text-sm sm:text-base md:text-xl font-bold text-gray-800">
                   {item.title}
                 </h1>
-                <p className="mt-1 text-xs sm:text-sm md:text-base mb-2 text-gray-600 leading-relaxed">
+                <p className="mt-0 text-xs sm:text-sm md:text-base mb-2 text-gray-600 leading-relaxed">
                 {item.description}
                 </p>
-                <h2 className="text-sm sm:text-base md:text-xl font-bold text-sky-500">
+                <h2 className="text-sm sm:text-base text-md:text-xl font-bold text-sky-500">
                   {item.price}
                 </h2>
               {item.link && (
                 <Link 
-                href={item.link} className="mt-3 sm:mt-3 md:mt-3 inline-block text-white bg-blue-600 hover:bg-blue-700 transition px-3 py-1 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm">                  
+                href={item.link} className="mt-3 sm:mt-3 md:mt-3 inline-block text-white bg-blue-500 hover:bg-blue-700 transition px-3 py-1 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm">                  
                 link terkait
                 </Link>
               )}
